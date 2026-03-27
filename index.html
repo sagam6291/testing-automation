@@ -76,19 +76,6 @@
     text-decoration: none;
   }
   .nav-link:hover, .nav-link.active { border-bottom-color: white; }
-  .btn-login {
-    background: transparent;
-    border: 2px solid white;
-    color: white;
-    border-radius: 999px;
-    padding: 6px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    font-family: 'Inter', sans-serif;
-  }
-  .btn-login:hover { background: white; color: var(--blue); }
 
   /* ── FOOTER ── */
   footer {
@@ -108,7 +95,7 @@
     font-size: 15px;
     cursor: pointer;
   }
-  .footer-links { display: flex; gap: 32px; }
+  .footer-links { display: flex; gap: 32px; align-items: center; }
   .footer-link {
     color: rgba(255,255,255,0.75);
     font-size: 13px;
@@ -118,6 +105,21 @@
   }
   .footer-link:hover { color: white; }
   .footer-copy { color: rgba(255,255,255,0.5); font-size: 12px; }
+
+  /* Login button in footer */
+  .btn-login-footer {
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.6);
+    color: white;
+    border-radius: 999px;
+    padding: 6px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-login-footer:hover { background: white; color: var(--bg-dark); border-color: white; }
 
   /* ── MAIN CONTENT AREA ── */
   .page-body {
@@ -192,7 +194,6 @@
     position: relative;
     overflow: hidden;
   }
-  /* Abstract art background */
   .hero-image::before {
     content: '';
     position: absolute;
@@ -209,7 +210,6 @@
       radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.35) 0%, transparent 60%),
       linear-gradient(200deg, rgba(0,80,40,0.3) 0%, transparent 60%);
   }
-  /* Diagonal lines overlay */
   .hero-img-lines {
     position: absolute;
     inset: 0;
@@ -695,29 +695,27 @@
 <body>
 
 <!-- ═══════════════════════════ PAGE: HOME ═══════════════════════════ -->
-<div id="page-home" class="page active">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-home" class="page active" xpath="/html/body/div[@id='page-home']">
+  <nav xpath="/html/body/div[@id='page-home']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-home']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link active" onclick="goTo('products')">Products</a>
-      <a class="nav-link" onclick="goTo('solutions')">Solutions</a>
-      <button class="btn-login" onclick="goTo('login')">Login</button>
+    <span class="nav-center" xpath="/html/body/div[@id='page-home']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-home']/nav/div[@class='nav-right']">
+      <a class="nav-link active" onclick="goTo('products')" xpath="/html/body/div[@id='page-home']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-home']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
 
-  <div class="page-body" style="padding:0; flex-direction:column; align-items:stretch;">
+  <div class="page-body" style="padding:0; flex-direction:column; align-items:stretch;" xpath="/html/body/div[@id='page-home']/div[@class='page-body']">
     <!-- Hero card -->
-    <div class="home-hero">
-      <div class="home-hero-card">
+    <div class="home-hero" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']">
+      <div class="home-hero-card" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']">
         <!-- Abstract art image left -->
-        <div class="hero-image">
+        <div class="hero-image" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-image']">
           <div class="hero-img-lines">
             <svg viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-              <!-- Green gradient base -->
               <defs>
                 <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" style="stop-color:#b2f5c8;stop-opacity:1" />
@@ -730,62 +728,63 @@
                 </linearGradient>
               </defs>
               <rect width="340" height="280" fill="url(#g1)"/>
-              <!-- Abstract diagonal lines like the original -->
               <line x1="0" y1="280" x2="200" y2="0" stroke="rgba(0,0,0,0.35)" stroke-width="3"/>
               <line x1="30" y1="280" x2="230" y2="0" stroke="rgba(0,0,0,0.25)" stroke-width="2"/>
               <line x1="60" y1="280" x2="260" y2="0" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
               <line x1="-20" y1="280" x2="180" y2="0" stroke="rgba(0,0,0,0.3)" stroke-width="4"/>
               <line x1="80" y1="280" x2="340" y2="60" stroke="rgba(0,0,0,0.2)" stroke-width="2"/>
               <line x1="100" y1="280" x2="340" y2="30" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
-              <!-- Cross diagonals -->
               <line x1="0" y1="0" x2="200" y2="280" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
               <line x1="40" y1="0" x2="240" y2="280" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
               <line x1="80" y1="0" x2="280" y2="280" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-              <!-- Light overlay polygon -->
               <polygon points="0,0 200,0 0,180" fill="rgba(255,255,255,0.15)"/>
-              <!-- Dark accent shapes -->
               <polygon points="100,280 260,280 340,100 200,0 80,0" fill="rgba(0,50,30,0.18)"/>
-              <!-- Highlights -->
               <ellipse cx="80" cy="100" rx="60" ry="40" fill="rgba(255,255,255,0.18)"/>
             </svg>
           </div>
         </div>
 
-        <!-- Right side settings -->
-        <div class="hero-right">
+        <!-- Right side settings — toggles reshuffled: Agam Singh → Sattva → Amit Nkhade -->
+        <div class="hero-right" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']">
           <h2>Customize Your Experience</h2>
           <p>Configure your preferences to get the most out of our platform.</p>
 
           <div class="section-label">Quick Settings</div>
-          <div class="toggle-row">
-            <span>Amit Nkhade</span>
-            <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
-          </div>
-          <div class="toggle-row">
+
+          <!-- Toggle 1: Agam Singh (was toggle 2, now first) -->
+          <div class="toggle-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][1]">
             <span>Agam Singh</span>
-            <button class="toggle off" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            <button class="toggle off" onclick="this.classList.toggle('on');this.classList.toggle('off')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][1]/button"></button>
           </div>
-          <div class="toggle-row">
+
+          <!-- Toggle 2: Sattva (was toggle 3, now second) -->
+          <div class="toggle-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][2]">
             <span>Sattva</span>
-            <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')"></button>
+            <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][2]/button"></button>
+          </div>
+
+          <!-- Toggle 3: Amit Nkhade (was toggle 1, now third) -->
+          <div class="toggle-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][3]">
+            <span>Amit Nkhade</span>
+            <button class="toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='toggle-row'][3]/button"></button>
           </div>
 
           <div class="features-section">
             <div class="section-label">Features</div>
-            <div class="check-row">
-              <div class="custom-checkbox checked" onclick="this.classList.toggle('checked')"></div>
+            <div class="check-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][1]">
+              <div class="custom-checkbox checked" onclick="this.classList.toggle('checked')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][1]/div"></div>
               <span>Enable real-time analytics</span>
             </div>
-            <div class="check-row">
-              <div class="custom-checkbox" onclick="this.classList.toggle('checked')"></div>
+            <div class="check-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][2]">
+              <div class="custom-checkbox" onclick="this.classList.toggle('checked')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][2]/div"></div>
               <span>Automated daily reports</span>
             </div>
-            <div class="check-row">
-              <div class="custom-checkbox checked" onclick="this.classList.toggle('checked')"></div>
+            <div class="check-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][3]">
+              <div class="custom-checkbox checked" onclick="this.classList.toggle('checked')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][3]/div"></div>
               <span>Push notifications</span>
             </div>
-            <div class="check-row">
-              <div class="custom-checkbox" onclick="this.classList.toggle('checked')"></div>
+            <div class="check-row" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][4]">
+              <div class="custom-checkbox" onclick="this.classList.toggle('checked')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='home-hero']/div[@class='home-hero-card']/div[@class='hero-right']/div[@class='features-section']/div[@class='check-row'][4]/div"></div>
               <span>Two-factor authentication</span>
             </div>
           </div>
@@ -794,7 +793,7 @@
     </div>
 
     <!-- Built for the Modern Team -->
-    <div class="built-section">
+    <div class="built-section" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='built-section']">
       <h2>Built for the <span>Modern Team</span></h2>
       <p>NovaSaaS empowers teams to work smarter, not harder. Our cloud platform brings together analytics, automation, and collaboration in one seamless experience. Say goodbye to scattered tools and hello to unified productivity.</p>
       <div class="feature-cards">
@@ -817,25 +816,25 @@
     </div>
 
     <!-- Search section -->
-    <div class="search-section">
+    <div class="search-section" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='search-section']">
       <div class="search-card">
         <h3>Find What You Need</h3>
         <p>Search our knowledge base, documentation, and resources.</p>
         <div class="search-input-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input class="search-input" type="text" placeholder="Search documentation, guides, tutorials...">
+          <input class="search-input" type="text" placeholder="Search documentation, guides, tutorials..." xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='search-section']/div[@class='search-card']/div[@class='search-input-wrap']/input">
         </div>
         <div class="radio-group">
           <label class="radio-item">
-            <div class="radio-dot selected" id="r1" onclick="selectRadio('r1')"></div>
+            <div class="radio-dot selected" id="r1" onclick="selectRadio('r1')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='search-section']/div[@class='search-card']/div[@class='radio-group']/label[1]/div"></div>
             All Resources
           </label>
           <label class="radio-item">
-            <div class="radio-dot" id="r2" onclick="selectRadio('r2')"></div>
+            <div class="radio-dot" id="r2" onclick="selectRadio('r2')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='search-section']/div[@class='search-card']/div[@class='radio-group']/label[2]/div"></div>
             Documentation
           </label>
           <label class="radio-item">
-            <div class="radio-dot" id="r3" onclick="selectRadio('r3')"></div>
+            <div class="radio-dot" id="r3" onclick="selectRadio('r3')" xpath="/html/body/div[@id='page-home']/div[@class='page-body']/div[@class='search-section']/div[@class='search-card']/div[@class='radio-group']/label[3]/div"></div>
             Tutorials
           </label>
         </div>
@@ -843,152 +842,153 @@
     </div>
   </div>
 
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <!-- Footer with Login button moved here -->
+  <footer xpath="/html/body/div[@id='page-home']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-home']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-home']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-home']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-home']/footer/div[@class='footer-links']/a[2]">Solutions</a>
+      <button class="btn-login-footer" onclick="goTo('login')" xpath="/html/body/div[@id='page-home']/footer/div[@class='footer-links']/button">Login</button>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-home']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
 
 <!-- ═══════════════════════════ PAGE: PRODUCTS ═══════════════════════════ -->
-<div id="page-products" class="page">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-products" class="page" xpath="/html/body/div[@id='page-products']">
+  <nav xpath="/html/body/div[@id='page-products']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-products']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link active" onclick="goTo('products')">Products</a>
-      <a class="nav-link" onclick="goTo('solutions')">Solutions</a>
-      <button class="btn-login" onclick="goTo('login')">Login</button>
+    <span class="nav-center" xpath="/html/body/div[@id='page-products']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-products']/nav/div[@class='nav-right']">
+      <a class="nav-link active" onclick="goTo('products')" xpath="/html/body/div[@id='page-products']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-products']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
 
-  <div class="page-body centered">
-    <div class="card">
+  <div class="page-body centered" xpath="/html/body/div[@id='page-products']/div[@class='page-body centered']">
+    <div class="card" xpath="/html/body/div[@id='page-products']/div[@class='page-body centered']/div[@class='card']">
       <div class="card-title">
         <div class="page-icon">📦</div>
         Our Products
       </div>
       <p>NovaSaaS offers a comprehensive suite of cloud-based tools designed to streamline your business operations. From intelligent analytics dashboards to automated workflow engines, our products are built to scale with your team.</p>
       <p>Whether you're a startup finding your footing or an enterprise managing thousands of users, our modular architecture ensures you only pay for what you need. Explore the next page for detailed feature breakdowns and integration guides.</p>
-      <button class="btn-purple" onclick="goTo('features')">
+      <button class="btn-purple" onclick="goTo('features')" xpath="/html/body/div[@id='page-products']/div[@class='page-body centered']/div[@class='card']/button">
         Open Next Page
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </button>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <footer xpath="/html/body/div[@id='page-products']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-products']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-products']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-products']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-products']/footer/div[@class='footer-links']/a[2]">Solutions</a>
+      <button class="btn-login-footer" onclick="goTo('login')" xpath="/html/body/div[@id='page-products']/footer/div[@class='footer-links']/button">Login</button>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-products']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
 
 <!-- ═══════════════════════════ PAGE: FEATURE DETAILS ═══════════════════════════ -->
-<div id="page-features" class="page">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-features" class="page" xpath="/html/body/div[@id='page-features']">
+  <nav xpath="/html/body/div[@id='page-features']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-features']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link active" onclick="goTo('products')">Products</a>
-      <a class="nav-link" onclick="goTo('solutions')">Solutions</a>
-      <button class="btn-login" onclick="goTo('login')">Login</button>
+    <span class="nav-center" xpath="/html/body/div[@id='page-features']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-features']/nav/div[@class='nav-right']">
+      <a class="nav-link active" onclick="goTo('products')" xpath="/html/body/div[@id='page-features']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-features']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
 
-  <div class="page-body centered">
-    <div class="card">
+  <div class="page-body centered" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']">
+    <div class="card" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']">
       <div class="card-title">
         <div class="page-icon" style="background:#7c3aed;">✅</div>
         Feature Details
       </div>
       <p>Each NovaSaaS product includes enterprise-grade security, 99.99% uptime SLA, and dedicated support. Our analytics engine processes over 10 million events per second with sub-millisecond latency.</p>
 
-      <div class="feature-grid">
-        <div class="feature-item">
+      <div class="feature-grid" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[1]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Real-time data sync
         </div>
-        <div class="feature-item">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[2]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Custom dashboards
         </div>
-        <div class="feature-item">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[3]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           API-first architecture
         </div>
-        <div class="feature-item">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[4]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Role-based access
         </div>
-        <div class="feature-item">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[5]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Audit logging
         </div>
-        <div class="feature-item">
+        <div class="feature-item" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/div[@class='feature-grid']/div[6]">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           Webhook integrations
         </div>
       </div>
 
-      <button class="btn-purple" onclick="goTo('home')">
+      <button class="btn-purple" onclick="goTo('home')" xpath="/html/body/div[@id='page-features']/div[@class='page-body centered']/div[@class='card']/button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         Back to Home
       </button>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <footer xpath="/html/body/div[@id='page-features']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-features']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-features']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-features']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-features']/footer/div[@class='footer-links']/a[2]">Solutions</a>
+      <button class="btn-login-footer" onclick="goTo('login')" xpath="/html/body/div[@id='page-features']/footer/div[@class='footer-links']/button">Login</button>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-features']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
 
 <!-- ═══════════════════════════ PAGE: SOLUTIONS ═══════════════════════════ -->
-<div id="page-solutions" class="page">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-solutions" class="page" xpath="/html/body/div[@id='page-solutions']">
+  <nav xpath="/html/body/div[@id='page-solutions']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-solutions']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link" onclick="goTo('products')">Products</a>
-      <a class="nav-link active" onclick="goTo('solutions')">Solutions</a>
-      <button class="btn-login" onclick="goTo('login')">Login</button>
+    <span class="nav-center" xpath="/html/body/div[@id='page-solutions']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-solutions']/nav/div[@class='nav-right']">
+      <a class="nav-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-solutions']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link active" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-solutions']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
 
-  <div class="page-body centered">
-    <div class="card">
+  <div class="page-body centered" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']">
+    <div class="card" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']">
       <div class="card-title">
         <div class="page-icon" style="background:#7c3aed;">🌐</div>
         Solutions
@@ -996,133 +996,133 @@
       <p>Our solutions are tailored for industries ranging from fintech and healthcare to e-commerce and education. NovaSaaS provides pre-built templates and integrations so you can get up and running in minutes, not months.</p>
       <p>Every solution comes with a dedicated onboarding specialist, custom training resources, and a community of thousands of power users ready to share best practices and workflow ideas.</p>
 
-      <div class="solution-tiers">
-        <div class="tier-card">
+      <div class="solution-tiers" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']/div[@class='solution-tiers']">
+        <div class="tier-card" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']/div[@class='solution-tiers']/div[1]">
           <h4>Startup</h4>
           <p>Perfect for teams under 20</p>
         </div>
-        <div class="tier-card">
+        <div class="tier-card" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']/div[@class='solution-tiers']/div[2]">
           <h4>Business</h4>
           <p>Designed for growing teams</p>
         </div>
-        <div class="tier-card">
+        <div class="tier-card" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']/div[@class='solution-tiers']/div[3]">
           <h4>Enterprise</h4>
           <p>Full-scale deployment</p>
         </div>
       </div>
 
-      <button class="btn-purple" onclick="goTo('home')">
+      <button class="btn-purple" onclick="goTo('home')" xpath="/html/body/div[@id='page-solutions']/div[@class='page-body centered']/div[@class='card']/button">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         Back to Home
       </button>
     </div>
   </div>
 
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <footer xpath="/html/body/div[@id='page-solutions']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-solutions']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-solutions']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-solutions']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-solutions']/footer/div[@class='footer-links']/a[2]">Solutions</a>
+      <button class="btn-login-footer" onclick="goTo('login')" xpath="/html/body/div[@id='page-solutions']/footer/div[@class='footer-links']/button">Login</button>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-solutions']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
 
 <!-- PAGE: LOGIN -->
-<div id="page-login" class="page">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-login" class="page" xpath="/html/body/div[@id='page-login']">
+  <nav xpath="/html/body/div[@id='page-login']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-login']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link" onclick="goTo('products')">Products</a>
-      <a class="nav-link" onclick="goTo('solutions')">Solutions</a>
-      <button class="btn-login" onclick="goTo('login')">Login</button>
+    <span class="nav-center" xpath="/html/body/div[@id='page-login']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-login']/nav/div[@class='nav-right']">
+      <a class="nav-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-login']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-login']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
-  <div class="page-body centered">
-    <div class="login-card">
+  <div class="page-body centered" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']">
+    <div class="login-card" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']">
       <div class="login-logo">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         <span>NovaSaaS</span>
       </div>
       <h2>Welcome back</h2>
       <p>Sign in to your account to continue</p>
-      <div class="error-msg" id="login-error">
+      <div class="error-msg" id="login-error" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/div[@id='login-error']">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
         Invalid credentials. Please try again.
       </div>
-      <div class="form-group">
+      <div class="form-group" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/div[@class='form-group'][1]">
         <label>Email address</label>
         <div class="input-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <input id="login-email" class="form-input" type="email" placeholder="you@example.com" oninput="clearLoginError()">
+          <input id="login-email" class="form-input" type="email" placeholder="you@example.com" oninput="clearLoginError()" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/div[@class='form-group'][1]/div[@class='input-wrap']/input[@id='login-email']">
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/div[@class='form-group'][2]">
         <label>Password</label>
         <div class="input-wrap">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <input id="login-password" class="form-input" type="password" placeholder="Enter your password" oninput="clearLoginError()" onkeydown="if(event.key==='Enter')handleLogin()">
+          <input id="login-password" class="form-input" type="password" placeholder="Enter your password" oninput="clearLoginError()" onkeydown="if(event.key==='Enter')handleLogin()" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/div[@class='form-group'][2]/div[@class='input-wrap']/input[@id='login-password']">
         </div>
       </div>
-      <button class="btn-signin" onclick="handleLogin()">Sign In</button>
+      <button class="btn-signin" onclick="handleLogin()" xpath="/html/body/div[@id='page-login']/div[@class='page-body centered']/div[@class='login-card']/button[@class='btn-signin']">Sign In</button>
     </div>
   </div>
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <footer xpath="/html/body/div[@id='page-login']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-login']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-login']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-login']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-login']/footer/div[@class='footer-links']/a[2]">Solutions</a>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-login']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
 
 <!-- PAGE: SIGN OUT (post-login success) -->
-<div id="page-signout" class="page">
-  <nav>
-    <a class="nav-logo" onclick="goTo('home')">
+<div id="page-signout" class="page" xpath="/html/body/div[@id='page-signout']">
+  <nav xpath="/html/body/div[@id='page-signout']/nav">
+    <a class="nav-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-signout']/nav/a[@class='nav-logo']">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </a>
-    <span class="nav-center">Modern Cloud Platform</span>
-    <div class="nav-right">
-      <a class="nav-link" onclick="goTo('products')">Products</a>
-      <a class="nav-link" onclick="goTo('solutions')">Solutions</a>
+    <span class="nav-center" xpath="/html/body/div[@id='page-signout']/nav/span[@class='nav-center']">Modern Cloud Platform</span>
+    <div class="nav-right" xpath="/html/body/div[@id='page-signout']/nav/div[@class='nav-right']">
+      <a class="nav-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-signout']/nav/div[@class='nav-right']/a[1]">Products</a>
+      <a class="nav-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-signout']/nav/div[@class='nav-right']/a[2]">Solutions</a>
     </div>
   </nav>
-  <div class="page-body centered">
-    <div class="signout-card">
+  <div class="page-body centered" xpath="/html/body/div[@id='page-signout']/div[@class='page-body centered']">
+    <div class="signout-card" xpath="/html/body/div[@id='page-signout']/div[@class='page-body centered']/div[@class='signout-card']">
       <div class="signout-logo">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
         <span>NovaSaaS</span>
       </div>
       <h2>Sign out</h2>
       <p>Login done successfully</p>
-      <button class="btn-signout" onclick="goTo('home')">Sign Out</button>
+      <button class="btn-signout" onclick="goTo('home')" xpath="/html/body/div[@id='page-signout']/div[@class='page-body centered']/div[@class='signout-card']/button[@class='btn-signout']">Sign Out</button>
     </div>
   </div>
-  <footer>
-    <div class="footer-logo" onclick="goTo('home')">
+  <footer xpath="/html/body/div[@id='page-signout']/footer">
+    <div class="footer-logo" onclick="goTo('home')" xpath="/html/body/div[@id='page-signout']/footer/div[@class='footer-logo']">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       NovaSaaS
     </div>
-    <div class="footer-links">
-      <a class="footer-link" onclick="goTo('products')">Products</a>
-      <a class="footer-link" onclick="goTo('solutions')">Solutions</a>
+    <div class="footer-links" xpath="/html/body/div[@id='page-signout']/footer/div[@class='footer-links']">
+      <a class="footer-link" onclick="goTo('products')" xpath="/html/body/div[@id='page-signout']/footer/div[@class='footer-links']/a[1]">Products</a>
+      <a class="footer-link" onclick="goTo('solutions')" xpath="/html/body/div[@id='page-signout']/footer/div[@class='footer-links']/a[2]">Solutions</a>
     </div>
-    <span class="footer-copy">© 2026 NovaSaaS. All rights reserved.</span>
+    <span class="footer-copy" xpath="/html/body/div[@id='page-signout']/footer/span[@class='footer-copy']">© 2026 NovaSaaS. All rights reserved.</span>
   </footer>
 </div>
 
@@ -1149,7 +1149,6 @@
     const passInput = document.getElementById('login-password');
 
     if (email === 'a@gmail.com' && password === 'abc') {
-      // Success – clear form and navigate to sign-out page
       errorEl.classList.remove('show');
       emailInput.style.borderColor = '';
       passInput.style.borderColor = '';
@@ -1157,11 +1156,9 @@
       passInput.value = '';
       goTo('signout');
     } else {
-      // Failure – show error and highlight inputs
       errorEl.classList.add('show');
       emailInput.style.borderColor = '#fca5a5';
       passInput.style.borderColor = '#fca5a5';
-      // Shake the card
       const card = emailInput.closest('.login-card');
       card.style.animation = 'none';
       void card.offsetHeight;
